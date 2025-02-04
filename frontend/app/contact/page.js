@@ -63,8 +63,8 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      console.log(process.env.NEXT_PUBLIC_BACK_END_URL);
-      const response = await fetch(`http://localhost:5000/api/contact`, {
+      
+      const response = await fetch(`https://saad-portfolio-nu.vercel.app/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
