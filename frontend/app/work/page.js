@@ -64,7 +64,7 @@ const projects = [
 ]
 
 const Work = () => {
-    const searchparams = useSearchParams();
+    const searchparams = useSearchParams({ forceDynamic: true });
     const [project, setProject] = useState(projects[0]);
     const [index, setIndex] = useState(0);
     const [isFading, setIsFading] = useState(false);
