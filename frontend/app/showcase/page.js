@@ -8,27 +8,27 @@ const projects = [
     {
         id: "e-commerce-store",
         title: "E Commerce Store",
-        image: "/E1.jpg",
+        image: "/E1.JPG",
     },
     {
         id: "iphone-16-landing-page",
         title: "iPhone 16 Landing Page",
-        image: "/ip1.jpg"
+        image: "/ip1.JPG"
     },
     {
         id: "portfolio-website",
         title: "Portfolio Website",
-        image: "/p1.jpg",
+        image: "/p1.JPG",
     },
     {
         id: "todo-list-app",
         title: "Todo List App",
-        image: "/t1.jpg",
+        image: "/t1.JPG",
     },
     {
         id: "tourist-app",
         title: "Tourist App",
-        image: "/to1.jpg"
+        image: "/to1.JPG"
     }
 ]
 
