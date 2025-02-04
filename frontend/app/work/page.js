@@ -105,12 +105,18 @@ const Work = () => {
     })
 
     useEffect(() => {
-        // console.log(params.slug);
-        let index = projects.findIndex((item) => item.id == searchparams.get('slug'))
-        // console.log(index);
-        setProject(projects[index])
-        setIndex(index);
-    }, [])
+        const slug = searchparams.get('slug');
+        const index = projects.findIndex((item) => item.id === slug);
+
+        // Ensure a valid project is always set
+        if (index !== -1) {
+            setProject(projects[index]);
+            setIndex(index);
+        } else {
+            setProject(projects[0]); // Default project if no slug
+            setIndex(0);
+        }
+    }, [searchparams]);
 
 
     return (
