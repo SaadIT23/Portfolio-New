@@ -43,7 +43,7 @@ export default function Home() {
 
           <div className="flex lg:gap-6  xl:min-w-[500px] lg:min-w-[450px] lg:flex-row lg:justify-start lg:items-start sm:flex-col sm:justify-center sm:items-center sm:gap-[10px]">
             <div className="btn bg-transparent border border-1 border-accent rounded-full px-7 py-2 text-accent hover:bg-accent/90 hover:cursor-pointer hover:text-white hover:transition-all duration-500 ">
-              <button className="flex justify-center items-center gap-2 uppercase">Download CV <FiDownload className="text-lg" /></button>
+              <a href="Saad CV.pdf" download={"Saad CV.pdf"} className="flex justify-center items-center gap-2 uppercase">Download CV <FiDownload className="text-lg" /></a>
             </div>
             <Social ConStyle={"social flex gap-5"} iconStyle={"w-9 h-9 border border-accent rounded-full flex justify-center items-center text-accent text-base hover:bg-accent hover:text-primary hover:transition-all duration-500"} />
           </div>
