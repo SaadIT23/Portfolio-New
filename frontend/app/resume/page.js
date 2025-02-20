@@ -45,14 +45,14 @@ const experience = {
     des: '"Showcasing my diverse experience from various industries."',
     items: [
         {
-            company: 'Software Development Firm',
-            position: "Front-End Developer",
-            duration: "2024 - Present",
-        },
-        {
             company: 'Freelance',
             position: "Web Developer",
-            duration: "2023 - 2024",
+            duration: "2023 - Current",
+        },
+        {
+            company: 'HiSkyTech',
+            position: "Front-End Developer",
+            duration: "Jul 2024 - Aug 2024",
         },
     ]
 }
@@ -62,7 +62,7 @@ const education = {
     des: '"Highlighting my academic background and relevant qualifications."',
     items: [
         {
-            institute: 'Coursera - Youtube',
+            institute: 'Coursera',
             degree: "FullStack Web Development Course",
             duration: "2023",
         },
