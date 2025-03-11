@@ -19,6 +19,7 @@ const projects = [
         stack: [{ name: "HTML" }, { name: "CSS" }, { name: "Javascript" }, { name: "PHP" }, { name: "MySQL" }],
         image: [{ src: "/E1.JPG" }, { src: "/E2.JPG" }, { src: "/E3.JPG" }, { src: "/E8.JPG" },],
         github: "https://github.com/SaadIT23/E-commerce-Project",
+
     },
     {
         id: "iphone-16-landing-page",
@@ -29,6 +30,7 @@ const projects = [
         stack: [{ name: "HTML" }, { name: "CSS" }, { name: "React js" }, { name: "Tailwind" }, { name: "GSAP" }],
         image: [{ src: "/ip1.JPG" }, { src: "/ip2.JPG" }, { src: "/ip3.JPG" }, { src: "/ip5.JPG" },],
         github: "https://github.com/SaadIT23/iPhone-16-Pro-Landing-Page",
+        live: "https://iphone-16-pro-landing-page.vercel.app/",
     },
     {
         id: "portfolio-website",
@@ -39,6 +41,7 @@ const projects = [
         stack: [{ name: "HTML" }, { name: "CSS" }, { name: "Javascript" }, { name: "Bootstrap" }],
         image: [{ src: "/p1.JPG" }, { src: "/p2.JPG" }, { src: "/p3.JPG" }, { src: "/p4.JPG" },],
         github: "https://github.com/SaadIT23/Mahad-Portfolio",
+
     },
     {
         id: "todo-list-app",
@@ -49,6 +52,7 @@ const projects = [
         stack: [{ name: "React" }, { name: "CSS" }, { name: "Tailwind" }],
         image: [{ src: "/t1.JPG" }, { src: "/t2.JPG" }],
         github: "https://github.com/SaadIT23/Todo-App.git",
+
     },
     {
         id: "tourist-app",
@@ -59,6 +63,7 @@ const projects = [
         stack: [{ name: "React" }, { name: "Tailwind" }, { name: "Node.js" }, { name: "MongoDB" }],
         image: [{ src: "/to1.JPG" }, { src: "/to2.JPG" }, { src: "/to3.JPG" }, { src: "/to4.JPG" },],
         github: "",
+
     },
 
 ]
@@ -141,7 +146,18 @@ const Work = () => {
                     </ul>
                     <div className="border border-white/20"></div>
 
-                    <Link className='w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group' href={project.github} target='_blank'><BsGithub className='text-white text-3xl group-hover:text-accent' /></Link>
+                    <div className='flex gap-4'>
+                        <Link className='w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group relative' href={project.github} target='_blank'><BsGithub className='text-white text-3xl group-hover:text-accent' />
+                            <p className='absolute text-xs font-bold -bottom-3 text-gray-700 rounded-lg p-1 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 '>Github</p>
+                        </Link>
+
+                        {project.live && (
+                            <Link className='w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group relative' href={project.live} target='_blank'>
+                                <BsArrowUpRight className='text-white text-3xl group-hover:text-accent' />
+                                <p className='absolute text-xs font-bold -bottom-3 text-gray-700 rounded-lg p-1 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 '>Live</p>
+                            </Link>
+                        )}
+                    </div>
                 </div>
                 <div className={`lg:w-[65%] sm:w-[80%] min-h-[100%] grid grid-cols-1 md:grid-cols-2 gap-8 m-3 justify-items-center items-center place-content-center transition-opacity duration-300 ${isFading ? 'opacity-0' : 'opacity-100'}`}>
                     {project.image.map((img, index) => {
