@@ -29,6 +29,11 @@ const projects = [
         id: "tourist-app",
         title: "Tourist App",
         image: "/to1.JPG"
+    },
+    {
+        id: "it-agency-admin",
+        title: "IT Agency Website",
+        image: "/it1.JPG"
     }
 ]
 

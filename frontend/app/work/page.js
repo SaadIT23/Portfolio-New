@@ -65,6 +65,29 @@ const projects = [
         github: "",
 
     },
+    {
+        id: "it-agency-admin",
+        num: "06",
+        category: "Full Stack Project",
+        title: "IT Agency Website with Admin Panel",
+        des: "A dynamic and responsive web application for an IT agency featuring a public-facing site for showcasing services and an admin panel for content management, client handling, and service analytics. Includes secure authentication for both admin and users, service request forms, project listings, and real-time updates.",
+        stack: [
+            { name: "MongoDB" },
+            { name: "Express.js" },
+            { name: "React" },
+            { name: "Node.js" },
+            { name: "JWT Auth" },
+            { name: "Tailwind" }
+        ],
+        image: [
+            { src: "/it1.JPG" },
+            { src: "/it5.JPG" },
+            { src: "/it3.JPG" },
+            { src: "/it4.JPG" }
+        ],
+        github: "",
+        live: "https://logi-xolve.vercel.app/"
+    }
 
 ]
 
@@ -137,7 +160,7 @@ const Work = () => {
                     <h2 className='text-[35px] md:text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize'>{project.category}</h2>
                     <p className='text-white/60 xl:text-[16px] md:text-[14px] text-[12px]'>{project.des}</p>
 
-                    <ul className='flex gap-3'>
+                    <ul className='flex gap-3 flex-wrap'>
                         {project.stack.map((item, index) => {
                             return <li key={index} className='xl:text-xl md:text-lg text-sm text-accent'>{item.name}
                                 {index !== project.stack.length - 1 && ","}
