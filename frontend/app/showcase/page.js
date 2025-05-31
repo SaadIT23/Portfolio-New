@@ -36,6 +36,11 @@ const projects = [
         title: "IT Agency Website",
         image: "/it1.JPG",
     },
+    {
+        id: "job-portal-app",
+        title: "Job Portal Web Application",
+        image: "/job1.JPG",
+    },
 ]
 
 const Showcase = () => {

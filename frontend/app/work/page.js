@@ -80,6 +80,26 @@ const projects = [
         github: "",
         live: "https://logi-xolve.vercel.app/",
     },
+    {
+        id: "job-portal-app",
+        num: "07",
+        category: "Full Stack Project",
+        title: "Job Portal Web Application",
+        des: "A job portal with separate modules for seekers and companies. Companies can post jobs, track applications, and schedule interviews. Seekers can search and filter jobs, apply, track status, and create/upload resumes (including video resumes). Includes a chatbot for assistance, profile management, and secure authentication.",
+        stack: [
+            { name: "ASP.NET" },
+            { name: "C#" },
+            { name: "MongoDB" },
+            { name: "HTML5" },
+            { name: "CSS3" },
+            { name: "JavaScript" },
+
+        ],
+        image: [{ src: "/job5.JPG" }, { src: "/job2.JPG" }, { src: "/job3.JPG" }, { src: "/job4.JPG" }],
+        github: "",
+        live: "",
+    }
+
 ]
 
 const Work = () => {
