@@ -92,7 +92,7 @@ const Contact = () => {
   return (
     <div className='container items-center  mx-auto flex flex-col lg:flex-row gap-[30px] w-[100vw] md:w-[95vw] xl:w-[85vw] min-h-[85vh]  2xl:max-h-[85vh] my-2'>
       <div className="form w-[90%] lg:w-[60%] max-h-full order-2 lg:order-none">
-        <form onSubmit={handleSubmit} className='flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl min-h-full 2xl:max-h-full'>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-6 p-5 md:p-10 bg-[#27272c] rounded-xl min-h-full 2xl:max-h-full'>
           <h3 className='text-4xl text-accent'>Let&apos;s Work together</h3>
           <p className='text-white/60'>Get in touch to discuss your project.</p>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>

@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { FaHtml5, FaCss3, FaJs, FaReact, FaFigma, FaNodeJs, FaJava } from "react-icons/fa"
+import { FaHtml5, FaCss3, FaJs, FaReact, FaFigma, FaNodeJs, FaJava, FaPython } from "react-icons/fa"
 import { SiTailwindcss, SiNextdotjs } from "react-icons/si"
 import { PiFileCpp } from "react-icons/pi";
 import { useState } from "react"
@@ -120,6 +120,18 @@ const skills = {
         {
             icon: <PiFileCpp />,
             name: "C++",
+        },
+        {
+            icon: <FaJava />,
+            name: "Java",
+        },
+        {
+            icon: <FaFigma />,
+            name: "Figma",
+        },
+        {
+            icon: <FaPython />,
+            name: "Python",
         },
 
     ]
