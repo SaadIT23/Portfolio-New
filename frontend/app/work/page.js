@@ -93,12 +93,52 @@ const projects = [
             { name: "HTML5" },
             { name: "CSS3" },
             { name: "JavaScript" },
+            { name: "AI Chatbot" },
 
         ],
         image: [{ src: "/job5.JPG" }, { src: "/job2.JPG" }, { src: "/job3.JPG" }, { src: "/job4.JPG" }],
         github: "",
         live: "",
-    }
+    },
+    {
+        id: "movies-music-app",
+        num: "08",
+        category: "Full Stack Project",
+        title: "Movies & Music Web Application",
+        des: "A MERN stack web app where users can explore trending movies and music, search by genre, and view detailed content pages. Includes personalized playlists, watchlists, audio/video streaming, and secure authentication for user profiles. Admins can manage content, while users enjoy a smooth, responsive, and engaging multimedia experience.",
+        stack: [
+            { name: "MongoDB" },
+            { name: "Express.js" },
+            { name: "React.js" },
+            { name: "Node.js" },
+            { name: "HTML5" },
+            { name: "CSS3" },
+            { name: "JavaScript" },
+        ],
+        image: [{ src: "/mov1.JPG" }, { src: "/mov2.JPG" }, { src: "/mov3.JPG" }, { src: "/mov4.JPG" }],
+        github: "",
+        live: "",
+    },
+    {
+        id: "umt-virtual-tour",
+        num: "09",
+        category: "Full Stack Project",
+        title: "3D Virtual Tour Web",
+        des: "An immersive 3D virtual tour platform of the University of Management and Technology (UMT) featuring 360° views, interactive maps, and sections for academics and student life with a live chatbot for queries. Includes an admin panel for content management and smooth user navigation powered by Next.js and 360° integration.",
+        stack: [
+            { name: "Next.js" },
+            { name: "Tailwind CSS" },
+            { name: "Node.js" },
+            { name: "MongoDB" },
+            { name: "AI Chatbot" },
+
+        ],
+        image: [{ src: "/umt1.JPG" }, { src: "/umt2.JPG" }, { src: "/umt3.JPG" }, { src: "/umt4.JPG" }],
+        github: "",
+        live: "",
+    },
+
+
 
 ]
 

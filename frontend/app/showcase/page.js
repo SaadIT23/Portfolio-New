@@ -41,6 +41,16 @@ const projects = [
         title: "Job Portal Web Application",
         image: "/job1.JPG",
     },
+    {
+        id: "movies-music-app",
+        title: "Movies & Music Web Application",
+        image: "/mov1.JPG",
+    },
+    {
+        id: "umt-virtual-tour",
+        title: "3D Virtual Tour Web",
+        image: "/umt1.JPG",
+    },
 ]
 
 const Showcase = () => {
