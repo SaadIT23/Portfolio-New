@@ -26,3 +26,7 @@
   box-sizing: border-box;
   font-family: "JetBrains Mono", monospace;
 }
+
+body::-webkit-scrollbar {
+  display: none;
+}
