@@ -5,6 +5,13 @@ import Photo from "./components/Photo";
 import Stats from "./components/Stats";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import About from "./components/About";
+import Skills from "./components/Skill";
+import Projects from "./components/Projects";
+import Services from "./components/Services";
+import Footer from "./components/Footer";
+
+import { FaArrowUp } from "react-icons/fa";
 
 gsap.registerPlugin(useGSAP);
 
@@ -28,7 +35,9 @@ export default function Home() {
 
   });
 
-
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -55,6 +64,20 @@ export default function Home() {
         </div>
       </div>
       <Stats />
+      <About />
+      <Skills />
+      <Projects />
+      <Services />
+      <Footer />
+
+
+      <button
+        onClick={scrollToTop}
+        className="fixed right-6 bottom-6 bg-accent text-primary p-3 rounded-full shadow-lg hover:scale-110 transition-transform"
+        aria-label="Back to top"
+      >
+        <FaArrowUp className="text-xl" />
+      </button>
     </>
   );
 }
