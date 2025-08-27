@@ -81,7 +81,7 @@ export default function Skills() {
                             className="p-6 bg-primary/10 rounded-2xl border border-accent/30 shadow-md shadow-accent/10 hover:shadow-accent/30 transition-all duration-300"
                         >
                             <h3 className="text-xl font-semibold text-accent mb-4 text-center">{group.category}</h3>
-                            <div className="flex flex-wrap gap-6">
+                            <div className="flex flex-wrap md:justify-start justify-center gap-6">
                                 {group.items.map((skill, i) => (
                                     <div
                                         key={i}

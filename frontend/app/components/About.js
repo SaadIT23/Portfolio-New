@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function About() {
     return (
-        <section className="about bg-primary/5 py-20 lg:py-28" id="about">
+        <section className="about bg-primary/5 py-20 lg:py-28 overflow-x-hidden" id="about">
             <div className="container mx-auto flex flex-col lg:flex-row items-center gap-16 px-6 lg:px-12">
 
                 {/* Left Side - Image */}
