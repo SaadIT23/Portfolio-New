@@ -88,7 +88,7 @@ export default function Skills() {
                                         className="flex flex-col items-center justify-center w-24 h-24 rounded-xl bg-primary/20 border border-accent/20 hover:bg-accent/10 transition-all duration-300"
                                     >
                                         {skill.icon}
-                                        <span className="text-white/80 text-sm mt-2">{skill.name}</span>
+                                        <span className="text-white/80 text-sm mt-2 text-center">{skill.name}</span>
                                     </div>
                                 ))}
                             </div>

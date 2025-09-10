@@ -47,7 +47,7 @@ const experience = {
         {
             company: 'Freelance',
             position: "Web Developer",
-            duration: "2023 - Current",
+            duration: "2023 - 2025",
         },
         {
             company: 'HiSkyTech',
@@ -69,7 +69,7 @@ const education = {
         {
             institute: 'University of Management and Technology, Lahore',
             degree: "Bachelor in Information Technology (BS IT)",
-            duration: "2021 - Current",
+            duration: "2021 - 2025",
         },
         {
             institute: 'Punjab Group of Colleges, Lahore',
