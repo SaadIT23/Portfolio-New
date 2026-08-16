@@ -1,0 +1,1435 @@
+I have a home page code of my portfolio I want you to make it more like scrollable with more content in it like project cards and more information in home page and also if you can make the navbar good stuff like that I will give you code one by one of everything
+Page.js:
+"use client"
+import { FiDownload } from "react-icons/fi";
+import Social from "./components/Social";
+import Photo from "./components/Photo";
+import Stats from "./components/Stats";
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(useGSAP);
+
+export default function Home() {
+  let timeline = gsap.timeline();
+
+  useGSAP(() => {
+    timeline.from(".left > div", {
+      x: -20,
+      opacity: 0,
+      stagger: 0.5,
+      duration: 0.5,
+      delay: 1
+    });
+
+    timeline.from(".right", {
+      x: 30,
+      opacity: 0,
+      duration: 0.5,
+    })
+
+  });
+
+
+
+  return (
+    <>
+      <div className="container  min-h-[76vh] mx-auto flex xl:my-2 lg:w-[90%] xl:w-[100%] md:w-[80%] lg:my-2 lg:mb-5 lg:flex-row sm:flex-col sm:justify-center sm:items-center lg:justify-start lg:items-center lg:gap-0 sm:gap-8 sm:my-8">
+        <div className="left flex justify-center items-center gap-5 flex-col  min-h-full lg:w-1/2 sm:w-[100%] sm:order-2 lg:order-none">
+          <div className="flex flex-col gap-3">
+            <p className="xl:text-xl lg:text-[18px] lg:text-start sm:text-[20px] sm:text-center">Software Developer</p>
+            <h1 className="xl:text-[80px] lg:text-[60px] lg:text-start sm:text-[50px] sm:text-center font-semibold leading-[1.1]">Hello I&apos;m <br /> <span className="text-accent">Saad Imran</span></h1>
+            {/* <h1 className="text-[48px] font-semibold leading-[1.1] text-accent">Saad Imran</h1> */}
+            <p className="text-white/80 lg:max-w-[500px] xl:text-[16px] lg:text-left lg:text-[14px] sm:text-center sm:max-w-[450px]">Passionate software developer with expertise in building innovative and efficient solutions, leveraging modern technologies to create impactful applications.</p>
+          </div>
+
+          <div className="flex lg:gap-6  xl:min-w-[500px] lg:min-w-[450px] lg:flex-row lg:justify-start lg:items-start sm:flex-col sm:justify-center sm:items-center sm:gap-[10px]">
+            <div className="btn bg-transparent border border-1 border-accent rounded-full px-7 py-2 text-accent hover:bg-accent/90 hover:cursor-pointer hover:text-white hover:transition-all duration-500 ">
+              <a href="Saad CV.pdf" download={"Saad Imran.pdf"} className="flex justify-center items-center gap-2 uppercase">Download CV <FiDownload className="text-lg" /></a>
+            </div>
+            <Social ConStyle={"social flex gap-5"} iconStyle={"w-9 h-9 border border-accent rounded-full flex justify-center items-center text-accent text-base hover:bg-accent hover:text-primary hover:transition-all duration-500"} />
+          </div>
+
+        </div>
+
+        <div className="right min-h-full w-1/2 flex justify-center items-center mix-blend-lighten sm:order-1 lg:order-none">
+          <Photo />
+        </div>
+      </div>
+      <Stats />
+    </>
+  );
+}
+
+Components:
+Navbar:
+"use client"
+import React, { useRef, useEffect, useState } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { GiHamburgerMenu } from "react-icons/gi";
+import { RxCross2 } from "react-icons/rx";
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+const Navbar = () => {
+  const pathname = usePathname()
+  const ref = useRef()
+  const [open, setopen] = useState(false)
+  const Links = [
+    {
+      name: 'Home',
+      path: '/',
+    },
+    {
+      name: 'Services',
+      path: '/services',
+    },
+    {
+      name: 'Resume',
+      path: '/resume',
+    },
+    {
+      name: 'Work',
+      path: '/showcase',
+    },
+    {
+      name: 'Contact',
+      path: '/contact',
+    },
+  ]
+
+  const handleClick = () => {
+    setopen(!open)
+  }
+
+  useEffect(() => {
+    setopen(false)
+  }, [])
+
+  useEffect(() => {
+    if (open) {
+      ref.current.style.transform = "translateX(0)"
+      ref.current.style.opacity = "1"
+    }
+    else {
+      ref.current.style.transform = "translateX(-100%)"
+      ref.current.style.opacity = "0"
+    }
+  }, [open])
+
+  useEffect(() => {
+    setopen(false)
+  }, [pathname])
+
+  const tl = gsap.timeline()
+  useGSAP(() => {
+
+    tl.from("nav .logo", {
+      y: -20,
+      opacity: 0,
+      duration: 0.3,
+      delay: 0.5
+    })
+
+    tl.from("ul .links", {
+      y: -20,
+      opacity: 0,
+      duration: 0.3,
+      stagger: 0.2
+    })
+  })
+
+
+  return (
+    <>
+      <div ref={ref} className="transition-all duration-500 md:hidden mob min-h-screen fixed top-0 left-0 w-[80vw] border bg-primary z-50 flex-col justify-center transform -translate-x-full opacity-0">
+        <button onClick={handleClick} className='self-start absolute top-3 left-2 text-3xl font-bold'><RxCross2 /></button>
+        <div className='h-screen'>
+          <ul className='flex flex-col gap-5 justify-center items-center h-full'>
+            {Links.map((link, index) => {
+              return <Link className={`text-base ${link.path === pathname && "text-accent border-b-2 border-accent"} capitalize font-medium hover:text-accent transition-all`} href={link.path} key={index}>{link.name}</Link>
+            })}
+          </ul>
+        </div>
+      </div>
+      <nav className='flex flex-row justify-between md:justify-around mx-4 md:mx-0 items-center py-[25px]  md:gap-0 gap-3'>
+        <div className="logo">
+          <Link href={'/'}><h1 className='text-4xl font-semibold'>Saad<span className='text-accent'>.</span></h1> </Link>
+        </div>
+        <div className='md:hidden block'>
+          <button className='text-lg' onClick={handleClick}><GiHamburgerMenu /></button>
+        </div>
+        <ul className='md:flex gap-12 hidden'>
+          {Links.map((link, index) => {
+            return <Link className={`links text-base ${link.path === pathname && "text-accent border-b-2 border-accent"} capitalize font-medium hover:text-accent`} href={link.path} key={index}>{link.name}</Link>
+          })}
+        </ul>
+      </nav>
+    </>
+  )
+}
+
+export default Navbar
+
+Photo.js:
+"use client"
+import React from 'react'
+const Photo = () => {
+    return (
+        <img src="/saadbg.png" width={"500"} height={"500"} className='rounded-full  drop-shadow-lg shadow-lg animate-blink-shadow ' priority="true" quality={100} alt='Saad' />
+    )
+}
+
+export default Photo
+
+
+Social.js:
+import Link from 'next/link';
+import React from 'react'
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+
+const Social = ({ ConStyle, iconStyle }) => {
+    // <FaLinkedinIn /> 
+    // <FaGithub /> 
+    const socials = [
+        { icon: <FaLinkedinIn />, path: "https://www.linkedin.com/in/saad-imran-it-" },
+        { icon: <FaGithub />, path: "https://github.com/SaadIT23" },
+    ]
+    return (
+        <div className={ConStyle}>
+            {socials.map((item, index) => {
+                return <Link key={index} target='_blank' href={item.path} className={iconStyle}>{item.icon} </Link>
+            })}
+        </div>
+    )
+}
+
+export default Social
+
+
+Stats.js:
+'use client'
+import React from 'react'
+import CountUp from 'react-countup'
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(useGSAP);
+
+const stat = [
+    {
+        num: 2,
+        text: "Years of Experience"
+    },
+    {
+        num: 10,
+        text: "Projects Completed"
+    },
+    {
+        num: 8,
+        text: "Technologies Learned"
+    },
+
+]
+const Stats = () => {
+
+    useGSAP(() => {
+        gsap.from(".stats", {
+            y: 20,
+            opacity: 0,
+            duration: 0.5,
+            delay: 2.1,
+            stagger: 0.4
+        })
+    })
+
+    return (
+        <div className='container mx-auto lg:my-0 sm:my-[20px]'>
+            <div className={`flex flex-wrap gap-6 max-w-[80vw] mx-auto xl:max-w-none  lg:justify-around sm:justify-center items-center overflow-hidden`}>
+                {stat.map((item, index) => {
+                    return <div className='stats flex gap-4 items-center justify-center' key={index}>
+                        <CountUp end={item.num} duration={4} delay={2.2} className='text-4xl xl:text-6xl font-extrabold' />
+                        <p className={`leading-snug text-accent/80 w-[50%] text-center`} >{item.text}</p>
+                    </div>
+                })}
+            </div>
+        </div>
+    )
+}
+
+export default Stats
+
+
+Details.js:
+import React from 'react'
+import { memo } from 'react'
+const Details = ({ details }) => {
+    if (details.title === "My Experience") {
+        return <div className='flex flex-col gap-[30px] text-center lg:text-left '>
+            <h3 className='text-4xl font-bold border-b-2 border-accent pb-1'>{details.title}</h3>
+            <p className='text-white/60 mx-auto lg:mx-0 max-w-[600px]'>{details.des}</p>
+            <div className='overflow-x-auto h-[400px]'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-[30px]'>
+                    {details.items.map((obj, index) => {
+                        return (
+                            <div key={index} className='bg-[#232329] h-[184px]  py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
+                                <span className='text-accent'>{obj.duration}</span>
+                                <h3 className='text-xl max-w-[260px] min-h-[60px] text-center lg:text-left'>{obj.position}</h3>
+                                <div className='flex items-center gap-3'>
+                                    <span className='size-[6px] rounded-full bg-accent'></span>
+                                    <p className='text-white/60'>{obj.company}</p>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+        </div>
+    }
+    else if (details.title === "My Education") {
+        return <div className='flex flex-col gap-[30px] text-center lg:text-left '>
+            <h3 className='text-4xl font-bold border-b-2 border-accent pb-1'>{details.title}</h3>
+            <p className='text-white/60 mx-auto lg:mx-0 max-w-[600px]'>{details.des}</p>
+            <div className='overflow-x-auto h-[400px]'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-[30px]'>
+                    {details.items.map((obj, index) => {
+                        return (
+                            <div key={index} className='bg-[#232329] h-[184px]  py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
+                                <span className='text-accent'>{obj.duration}</span>
+                                <h3 className='xl:text-xl max-w-[260px] min-h-[60px] text-center lg:text-left lg:text-[18px]'>{obj.degree}</h3>
+                                <div className='flex items-center gap-3'>
+                                    <span className='size-[6px] rounded-full bg-accent'></span>
+                                    <p className='text-white/60'>{obj.institute}</p>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+        </div>
+    }
+    else if (details.title === "My Skills") {
+        return <div className='flex flex-col gap-[30px]'>
+            <div className='flex flex-col gap-[30px] text-center lg:text-left'>
+                <h3 className='text-4xl font-bold border-b-2 border-accent pb-1'>{details.title}</h3>
+                <p className='max-w-[600px] text-white/60 mx-auto lg:mx-0' >{details.des}</p>
+            </div>
+            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:gap-[30px] sm:gap-[20px]'>
+                {details.skillset.map((obj, index) => {
+                    return (
+                        <div key={index} className='flex flex-col justify-center items-center bg-[#232329] w-full h-[150px] rounded-xl group'>
+                            <div className="icon text-6xl group-hover:text-accent transition-all duration-300">{obj.icon}</div>
+                            <div className="name capitalize group-hover:text-accent transition-all duration-300 text-center">{obj.name}</div>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+    }
+    else if (details.title === "About Me") {
+        return <div className='flex flex-col gap-[30px] text-center lg:text-left'>
+            <h3 className='text-4xl font-bold border-b-2 border-accent pb-1'>{details.title}</h3>
+            <p className='max-w-[600px] text-white/60 mx-auto lg:mx-0'>{details.des}</p>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-y-6 max-w-[620px] mx-auto xl:mx-0 gap-10'>
+                {details.info.map((obj, index) => {
+                    return (
+                        <div key={index} className='flex items-center justify-center lg:justify-start gap-3'>
+                            <span className='text-white/60'>{obj.fieldname}</span>
+                            <span className='text-xl text-gray-200'>{obj.fieldvalue}</span>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+    }
+
+}
+
+export default memo(Details)
+
+
+
+Contact Page:
+"use client"
+import React, { useState } from 'react'
+import { FaPhoneAlt, FaEnvelope, FaMapMarkedAlt } from 'react-icons/fa'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const info = [
+  {
+    icon: <FaPhoneAlt />,
+    name: "Phone",
+    des: "(+92) 3354747057",
+  },
+  {
+    icon: <FaEnvelope />,
+    name: "Email",
+    des: "saadimran936@gmail.com",
+  },
+  {
+    icon: <FaMapMarkedAlt />,
+    name: "Address",
+    des: "House no 4 Shah Jahan Street Islamia Park, Lahore",
+  },
+]
+
+const Contact = () => {
+  useGSAP(() => {
+    gsap.from(".container >div", {
+      y: -20,
+      opacity: 0,
+      delay: 0.5,
+      duration: 0.5,
+      stagger: 0.3
+    })
+  })
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: "",
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validate required fields
+    if (!formData.firstName || !formData.email || !formData.message) {
+      toast.error("Please fill in all required fields.", { autoClose: 3000 });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast.success("Message sent successfully!", { autoClose: 3000 });
+        setFormData({ firstName: "", lastName: "", email: "", phone: "", service: "", message: "" });
+
+
+      } else {
+        toast.error(result.error || "Something went wrong!", { autoClose: 3000 });
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to send message.", { autoClose: 3000 });
+    } finally {
+      // Re-enable the button after submission (either success or failure)
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className='container items-center  mx-auto flex flex-col lg:flex-row gap-[30px] w-[100vw] md:w-[95vw] xl:w-[85vw] min-h-[85vh]  2xl:max-h-[85vh] my-2'>
+      <div className="form w-[90%] lg:w-[60%] max-h-full order-2 lg:order-none">
+        <form onSubmit={handleSubmit} className='flex flex-col gap-6 p-5 md:p-10 bg-[#27272c] rounded-xl min-h-full 2xl:max-h-full'>
+          <h3 className='text-4xl text-accent'>Let&apos;s Work together</h3>
+          <p className='text-white/60'>Get in touch to discuss your project.</p>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+            <input className='flex h-[48px] rounded-md border border-white/10 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-white/60 outline-none' type="text" placeholder='Firstname' name="firstName" value={formData.firstName}
+              onChange={handleChange} required />
+            <input className='flex h-[48px] rounded-md border border-white/10 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-white/60 outline-none' type="text" placeholder='Lastname' name="lastName"
+              value={formData.lastName}
+              onChange={handleChange} />
+            <input className='flex h-[48px] rounded-md border border-white/10 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-white/60 outline-none' type="email" placeholder='Email' name="email"
+              value={formData.email}
+              onChange={handleChange} required />
+            <input className='flex h-[48px] rounded-md border border-white/10 focus:border-accent font-light bg-primary px-4 py-5 text-base placeholder:text-white/60 outline-none' type="phone" placeholder='Phone' name="phone"
+              value={formData.phone}
+              onChange={handleChange} />
+          </div>
+
+          <select
+            name="service"
+            value={formData.service}
+            onChange={handleChange}
+            id=""
+            className="flex h-[58px] w-full items-center justify-between rounded-md border border-white/10 bg-primary px-4 py-5 text-base text-white/60 placeholder:text-white/10 focus:border-accent outline-none"
+          >
+            <option value="ss" className="bg-primary text-accent py-1.5 text-sm rounded-sm">
+              Select a Service
+            </option>
+            <option value="web" className="bg-primary text-accent py-1.5 text-sm rounded-sm">
+              Web Development
+            </option>
+            <option value="ui" className="bg-primary text-accent py-1.5 text-sm rounded-sm">
+              UX/UI Design
+            </option>
+            <option value="database" className="bg-primary text-accent py-1.5 text-sm rounded-sm">
+              Database Development
+            </option>
+          </select>
+          <textarea name="message" id="" cols="30" rows="6" placeholder='Type your message here...' value={formData.message}
+            onChange={handleChange} className='h-[200px] flex min-h-[80px] rounded-md border border-white/10 bg-primary px-4 py-5 text-base placeholder:text-white/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50' required></textarea>
+          <button className='bg-accent min-w-[200px] lg:max-w-40 py-2 px-3 rounded-full text-primary font-bold hover:bg-accent-hover mx-auto lg:mx-0' disabled={isSubmitting} >{isSubmitting ? "Sending..." : "Send Message"}</button>
+        </form>
+      </div>
+
+      <div className="info my-4 lg:my-0 w-[90%] lg:w-[40%] min-h-full flex justify-center items-center order-1 lg:order-none">
+        <ul className='flex flex-col gap-10 justify-center'>
+          {info.map((item, index) => {
+            return (
+              <li key={index} className='flex items-center gap-6 '>
+                <div className='w-[40px] h-[40px] md:w-[52px] md:h-[52px] xl:w-[72px] xl:h-[72px] bg-[#27272c] text-accent rounded-md flex items-center justify-center'>
+                  <div className='text-[28px]'>{item.icon}</div>
+                </div>
+                <div className='flex-1'>
+                  <p className='text-white/60'>{item.name}</p>
+                  <h3 className='text-white/80 md:text-xl text-[15px]'>{item.des}</h3>
+                </div>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
+    </div>
+  )
+}
+
+export default Contact
+
+
+Resume Page:
+"use client"
+import React from 'react'
+import { FaHtml5, FaCss3, FaJs, FaReact, FaFigma, FaNodeJs, FaJava, FaPython } from "react-icons/fa"
+import { SiTailwindcss, SiNextdotjs } from "react-icons/si"
+import { PiFileCpp } from "react-icons/pi";
+import { useState } from "react"
+import Details from '../components/Details';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+
+// about data 
+const about = {
+    title: "About Me",
+    des: '"Sharing a glimpse into my personal background."',
+    info: [
+        {
+            fieldname: 'Name',
+            fieldvalue: 'Saad Imran',
+        },
+        {
+            fieldname: 'Phone',
+            fieldvalue: '+92 3354747057',
+        },
+        {
+            fieldname: 'Email',
+            fieldvalue: 'saadimran936@gmail.com',
+        },
+        {
+            fieldname: 'Nationality',
+            fieldvalue: 'Pakistan',
+        },
+        {
+            fieldname: 'Freelance',
+            fieldvalue: 'Available',
+        },
+        {
+            fieldname: 'Languages',
+            fieldvalue: 'English, Urdu',
+        },
+    ]
+}
+const experience = {
+    icon: '',
+    title: 'My Experience',
+    des: '"Showcasing my diverse experience from various industries."',
+    items: [
+        {
+            company: 'Freelance',
+            position: "Web Developer",
+            duration: "2023 - Current",
+        },
+        {
+            company: 'HiSkyTech',
+            position: "Front-End Developer",
+            duration: "Jul 2024 - Aug 2024",
+        },
+    ]
+}
+const education = {
+    icon: '',
+    title: 'My Education',
+    des: '"Highlighting my academic background and relevant qualifications."',
+    items: [
+        {
+            institute: 'Coursera',
+            degree: "FullStack Web Development Course",
+            duration: "2023",
+        },
+        {
+            institute: 'University of Management and Technology, Lahore',
+            degree: "Bachelor in Information Technology (BS IT)",
+            duration: "2021 - Current",
+        },
+        {
+            institute: 'Punjab Group of Colleges, Lahore',
+            degree: "Intermediate in Science (FSc Pre Engineering)",
+            duration: "2018 - 2020",
+        },
+        {
+            institute: 'M.N Education Campus, Lahore',
+            degree: "Matriculation in Science with Computer",
+            duration: "2016 - 2018",
+        },
+
+    ]
+}
+
+const skills = {
+    title: "My Skills",
+    des: '"Demonstrating my proficiency in key skills and technologies that drive my work and projects."',
+    skillset: [
+        {
+            icon: <FaHtml5 />,
+            name: "HTML 5",
+        },
+        {
+            icon: <FaCss3 />,
+            name: "CSS 3",
+        },
+        {
+            icon: <FaJs />,
+            name: "Javascript",
+        },
+        {
+            icon: <FaReact />,
+            name: "React.js",
+        },
+        {
+            icon: <SiNextdotjs />,
+            name: "next.js",
+        },
+        {
+            icon: <SiTailwindcss />,
+            name: "Tailwind CSS",
+        },
+        {
+            icon: <FaNodeJs />,
+            name: "Node JS",
+        },
+        {
+            icon: <PiFileCpp />,
+            name: "C++",
+        },
+        {
+            icon: <FaJava />,
+            name: "Java",
+        },
+        {
+            icon: <FaFigma />,
+            name: "Figma",
+        },
+        {
+            icon: <FaPython />,
+            name: "Python",
+        },
+
+    ]
+
+}
+
+
+
+const Resume = () => {
+
+    const [details, setDetails] = useState(experience)
+    const [active, setActive] = useState("exp")
+
+    const handleClick = (e) => {
+
+        if (e.target.value === 'education') {
+            setDetails(education)
+            setActive('edu')
+        }
+        else if (e.target.value === 'experience') {
+            setDetails(experience)
+            setActive('exp')
+        }
+        else if (e.target.value === 'skills') {
+            setDetails(skills)
+            setActive('skill')
+        }
+        else if (e.target.value === 'about') {
+            setDetails(about)
+            setActive('about')
+        }
+    }
+
+    useGSAP(() => {
+        gsap.fromTo(".container .det", { opacity: 0, x: 20 }, {
+            delay: 0.3,
+            opacity: 1,
+            duration: 0.5,
+            x: 0
+        })
+    }, [details])
+
+    return (
+        <div>
+            <div className="container flex  min-h-[80vh]  mx-auto my-5 min-w-[90%] lg:flex-row sm:flex-col lg:justify-start sm:justify-center lg:items-start sm:items-center">
+                <div className="2xl:w-[50%] lg:w-[30%] sm:w-[70%] min-h-full  flex flex-col items-center gap-8 pt-10 text-white font-medium">
+                    <button className={`2xl:w-[50%] lg:w-[80%] sm:w-[80%] bg-[#27272c] p-3 rounded-lg transition-all duration-300 hover:font-bold hover:bg-accent hover:text-primary ${(active === 'exp') ? 'bg-accent text-primary font-bold' : ''}`} value={'experience'} onClick={handleClick}>Experience</button>
+                    <button className={`2xl:w-[50%] lg:w-[80%] sm:w-[80%] bg-[#27272c] p-3 rounded-lg transition-all duration-300 hover:font-bold hover:bg-accent hover:text-primary ${(active === 'edu') ? 'bg-accent text-primary font-bold' : ''}`} value={'education'} onClick={handleClick}>Education</button>
+                    <button className={`2xl:w-[50%] lg:w-[80%] sm:w-[80%] bg-[#27272c] p-3 rounded-lg transition-all duration-300 hover:font-bold hover:bg-accent hover:text-primary ${(active === 'skill') ? 'bg-accent text-primary font-bold' : ''}`} value={'skills'} onClick={handleClick}>Skills</button>
+                    <button className={`2xl:w-[50%] lg:w-[80%] sm:w-[80%] bg-[#27272c] p-3 rounded-lg transition-all duration-300 hover:font-bold hover:bg-accent hover:text-primary ${(active === 'about') ? 'bg-accent text-primary font-bold' : ''}`} value={'about'} onClick={handleClick}>About me</button>
+                </div>
+                <div className="det 2xl:w-[50%] lg:w-[70%] min-h-full flex flex-col pt-10 items-center">
+                    <Details details={details} />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Resume
+
+Services: 
+"use client"
+import React from 'react'
+import { BsArrowDownRight } from "react-icons/bs";
+import Link from 'next/link';
+import { useState, useEffect } from "react";
+
+const services = [
+    {
+        num: "01",
+        title: "Web Development",
+        des: "Crafting responsive, user-friendly websites with modern technologies.",
+        href: ""
+    },
+    {
+        num: "02",
+        title: "UX/UI Design",
+        des: "Creating intuitive, visually appealing user interfaces and experiences.",
+        href: ""
+    },
+    {
+        num: "03",
+        title: "Database Development",
+        des: "Designing robust, scalable databases for efficient data management.",
+        href: ""
+    },
+    {
+        num: "04",
+        title: "Backend Development",
+        des: "Building secure, high-performance server-side applications that support seamless user experiences.",
+        href: ""
+    },
+
+]
+const Services = () => {
+    // <BsArrowDownRight />
+
+    const [transition, setTransition] = useState(false);
+
+    useEffect(() => {
+        setTransition(true);
+    }, [])
+
+    return (
+
+        <div className='container mx-auto min-h-[80vh]  m-3 flex xl:min-w-[90%] sm:min-w-[100%] md:gap-8 text-white/60 md:flex-row sm:flex-col  sm:justify-center sm:items-center md:justify-start sm:gap-[30px]'>
+
+            <div className=' md:w-[50%] min-h-full flex justify-center md:items-end flex-col md:gap-6 sm:w-[100%] sm:gap-[30px] sm:items-center'>
+
+                <div className={`2xl:h-[40%] xl:h-[50%] w-[80%] flex flex-col gap-4 justify-center group transition-all duration-500 transform ${transition ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} delay-200`}>
+                    <div className='flex justify-between items-center'>
+                        <p className='text-5xl font-extrabold text-outline text-transparent group-hover:text-outline-hover transition-all duration-500'>{services[0].num}</p>
+                        <Link href={services[0].href} className='xl:w-[70px] xl:h-[70px] sm:h-[60px] sm:w-[60px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:-rotate-45'>
+                            <BsArrowDownRight className='text-primary text-3xl' />
+                        </Link>
+                    </div>
+
+                    <h2 className='xl:text-[42px] lg:text-[35px] md:text-[25px] sm:text-[35px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500'>{services[0].title}</h2>
+                    <p className='xl:text-[16px] md:text-[13px]'>{services[0].des}</p>
+                    <div className='border-b border-white/20 '></div>
+                </div>
+
+                <div className={`2xl:h-[40%] xl:h-[50%] w-[80%] flex flex-col gap-4 justify-center group transition-all duration-500 transform ${transition ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} delay-300`}>
+                    <div className='flex justify-between items-center'>
+                        <p className='text-5xl font-extrabold text-outline text-transparent group-hover:text-outline-hover transition-all duration-500'>{services[1].num}</p>
+                        <Link href={services[1].href} className='xl:w-[70px] xl:h-[70px] sm:h-[60px] sm:w-[60px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:-rotate-45'>
+                            <BsArrowDownRight className='text-primary text-3xl' />
+                        </Link>
+                    </div>
+
+                    <h2 className='xl:text-[42px] lg:text-[35px] md:text-[25px] sm:text-[35px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500'>{services[1].title}</h2>
+                    <p className='xl:text-[16px] md:text-[13px]'>{services[1].des}</p>
+                    <div className='border-b border-white/20 '></div>
+                </div>
+
+            </div>
+
+            <div className='md:w-[50%] min-h-full flex justify-center md:items-start flex-col md:gap-6 sm:w-[100%] sm:gap-[30px] sm:items-center'>
+                <div className={`2xl:h-[40%] xl:h-[50%] w-[80%] flex flex-col gap-4 justify-center group transition-all duration-500 transform ${transition ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} delay-500`}>
+                    <div className='flex justify-between items-center'>
+                        <p className='text-5xl font-extrabold text-outline text-transparent group-hover:text-outline-hover transition-all duration-500'>{services[2].num}</p>
+                        <Link href={services[2].href} className='xl:w-[70px] xl:h-[70px] sm:h-[60px] sm:w-[60px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:-rotate-45'>
+                            <BsArrowDownRight className='text-primary text-3xl' />
+                        </Link>
+                    </div>
+
+                    <h2 className='xl:text-[42px] lg:text-[35px] md:text-[25px] sm:text-[35px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500'>{services[2].title}</h2>
+                    <p className='xl:text-[16px] md:text-[13px]'>{services[2].des}</p>
+                    <div className='border-b border-white/20 '></div>
+                </div>
+
+                <div className={`2xl:h-[40%] xl:h-[50%] w-[80%] flex flex-col gap-4 justify-center group transition-all duration-500 transform ${transition ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} delay-700`}>
+                    <div className='flex justify-between items-center'>
+                        <p className='text-5xl font-extrabold text-outline text-transparent group-hover:text-outline-hover transition-all duration-500'>{services[3].num}</p>
+                        <Link href={services[3].href} className='xl:w-[70px] xl:h-[70px] sm:h-[60px] sm:w-[60px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:-rotate-45'>
+                            <BsArrowDownRight className='text-primary text-3xl' />
+                        </Link>
+                    </div>
+
+                    <h2 className='xl:text-[42px] lg:text-[35px] md:text-[25px] sm:text-[35px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500'>{services[3].title}</h2>
+                    <p className='xl:text-[16px] md:text-[13px]'>{services[3].des}</p>
+                    <div className='border-b border-white/20 '></div>
+                </div>
+
+
+            </div>
+        </div>
+
+    )
+}
+
+export default Services
+
+
+Showcase:
+"use client"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
+import { Loader2 } from "lucide-react"
+
+const projects = [
+    {
+        id: "e-commerce-store",
+        title: "E Commerce Store",
+        image: "/E1.JPG",
+    },
+    {
+        id: "iphone-16-landing-page",
+        title: "iPhone 16 Landing Page",
+        image: "/ip1.JPG",
+    },
+    {
+        id: "portfolio-website",
+        title: "Portfolio Website",
+        image: "/p1.JPG",
+    },
+    {
+        id: "todo-list-app",
+        title: "Todo List App",
+        image: "/t1.JPG",
+    },
+    {
+        id: "tourist-app",
+        title: "Tourist App",
+        image: "/to1.JPG",
+    },
+    {
+        id: "it-agency-admin",
+        title: "IT Agency Website",
+        image: "/it1.JPG",
+    },
+    {
+        id: "job-portal-app",
+        title: "Job Portal Web Application",
+        image: "/job1.JPG",
+    },
+    {
+        id: "movies-music-app",
+        title: "Movies & Music Web Application",
+        image: "/mov1.JPG",
+    },
+    {
+        id: "umt-virtual-tour",
+        title: "3D Virtual Tour Web",
+        image: "/umt1.JPG",
+    },
+]
+
+const Showcase = () => {
+    const router = useRouter()
+    const [imagesLoaded, setImagesLoaded] = useState(false)
+    const [loadedCount, setLoadedCount] = useState(0)
+    const totalImages = projects.length
+
+    // Function to handle image load events
+    const handleImageLoaded = () => {
+        setLoadedCount((prev) => {
+            const newCount = prev + 1
+            if (newCount >= totalImages) {
+                setImagesLoaded(true)
+            }
+            return newCount
+        })
+    }
+
+    // Preload images
+    useEffect(() => {
+        // Create an array to hold all image elements
+        const imageElements = []
+
+        projects.forEach((project) => {
+            const img = new Image()
+            img.src = project.image
+            img.onload = handleImageLoaded
+            img.onerror = handleImageLoaded // Count errors as loaded to prevent infinite loading
+            imageElements.push(img)
+        })
+
+        // Cleanup function
+        return () => {
+            imageElements.forEach((img) => {
+                img.onload = null
+                img.onerror = null
+            })
+        }
+    }, [])
+
+    const handleCardClick = (id) => {
+        router.push(`/work?slug=${id}`)
+    }
+
+    useGSAP(() => {
+        if (imagesLoaded) {
+            const timeline = gsap.timeline()
+
+            // Animation for the heading
+            timeline.from(".head", {
+                y: -20,
+                opacity: 0,
+                duration: 0.4,
+            })
+
+            // Stagger animation for the cards
+            timeline.fromTo(
+                ".card",
+                {
+                    y: 30,
+                    opacity: 0,
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.1, // Duration for each card
+                    stagger: 0.2, // Stagger delay between animations
+                },
+            )
+        }
+    }, [imagesLoaded]) // Run GSAP animations when images are loaded
+
+    // Calculate loading percentage
+    const loadingPercentage = Math.round((loadedCount / totalImages) * 100)
+
+    return (
+        <div className="w-[85%] md:w-[98%] mx-auto">
+            {!imagesLoaded ? (
+                <div className="flex flex-col items-center justify-center min-h-[50vh]">
+                    <Loader2 className="h-12 w-12 animate-spin text-accent mb-4" />
+                    <p className="text-lg font-medium">Loading projects... {loadingPercentage}%</p>
+                    <div className="w-64 h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+                        <div
+                            className="h-full bg-accent transition-all duration-300 ease-in-out"
+                            style={{ width: `${loadingPercentage}%` }}
+                        ></div>
+                    </div>
+                </div>
+            ) : (
+                <>
+                    <h1 className="head text-xl md:text-2xl lg:text-4xl font-bold border-b-4 border-accent w-fit pb-2 mx-auto my-4">
+                        Project Showcase
+                    </h1>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full justify-items-center gap-6 my-10">
+                        {projects.map((item, index) => (
+                            <div
+                                key={index}
+                                className="card text-center h-fit md:h-[30vh] w-fit border rounded-xl md:rounded-3xl hover:cursor-pointer border-accent md:border-white md:hover:border-accent shadow-accent shadow-md md:shadow-none md:hover:shadow-accent md:hover:shadow-md transition-all duration-200 overflow-hidden relative group flex flex-col justify-center items-center"
+                                onClick={() => handleCardClick(item.id)}
+                            >
+                                <img
+                                    src={item.image || "/placeholder.svg"}
+                                    className="object-contain md:object-cover h-full opacity-50 md:opacity-100 md:group-hover:opacity-50"
+                                    alt={item.title}
+                                />
+                                <p className="z-10 absolute w-[70%] md:w-full opacity-100 md:opacity-0 transition-all duration-200 md:group-hover:opacity-100 text-xs md:text-xl font-bold text-white/90">
+                                    {item.title}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </>
+            )}
+        </div>
+    )
+}
+
+export default Showcase
+
+
+Work:
+"use client"
+import { useEffect } from "react"
+import { useState } from "react"
+
+import Link from "next/link"
+import NextImage from "next/image"
+import { BsArrowUpRight, BsGithub } from "react-icons/bs"
+import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi"
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
+import { useSearchParams } from "next/navigation"
+
+const projects = [
+    {
+        id: "e-commerce-store",
+        num: "01",
+        category: "Full Stack Project",
+        title: "E Commerce Store",
+        des: "A full-stack e-commerce project involves creating a comprehensive online store, combining a responsive front-end with secure back-end systems for managing products, orders, and payments efficiently.",
+        stack: [{ name: "HTML" }, { name: "CSS" }, { name: "Javascript" }, { name: "PHP" }, { name: "MySQL" }],
+        image: [{ src: "/E1.JPG" }, { src: "/E2.JPG" }, { src: "/E3.JPG" }, { src: "/E8.JPG" }],
+        github: "https://github.com/SaadIT23/E-commerce-Project",
+    },
+    {
+        id: "iphone-16-landing-page",
+        num: "02",
+        category: "Front End Landing Page",
+        title: "iPhone 16 Landing Page",
+        des: "The iPhone 16 landing page features a sleek, modern design that showcases the device's stunning display and key features with high-quality images and engaging animations, providing an immersive and intuitive user experience across all devices.",
+        stack: [{ name: "HTML" }, { name: "CSS" }, { name: "React js" }, { name: "Tailwind" }, { name: "GSAP" }],
+        image: [{ src: "/ip1.JPG" }, { src: "/ip2.JPG" }, { src: "/ip3.JPG" }, { src: "/ip5.JPG" }],
+        github: "https://github.com/SaadIT23/iPhone-16-Pro-Landing-Page",
+        live: "https://iphone-16-pro-landing-page.vercel.app/",
+    },
+    {
+        id: "portfolio-website",
+        num: "03",
+        category: "Frontend Project",
+        title: "Portfolio Website",
+        des: "A portfolio website showcases an individual's skills, projects, and achievements in a visually appealing and organized manner.",
+        stack: [{ name: "HTML" }, { name: "CSS" }, { name: "Javascript" }, { name: "Bootstrap" }],
+        image: [{ src: "/p1.JPG" }, { src: "/p2.JPG" }, { src: "/p3.JPG" }, { src: "/p4.JPG" }],
+        github: "https://github.com/SaadIT23/Mahad-Portfolio",
+    },
+    {
+        id: "todo-list-app",
+        num: "04",
+        category: "Frontend + Backend",
+        title: "Todo List App",
+        des: "A to-do list web app helps users organize and track tasks efficiently.",
+        stack: [{ name: "React" }, { name: "CSS" }, { name: "Tailwind" }],
+        image: [{ src: "/t1.JPG" }, { src: "/t2.JPG" }],
+        github: "https://github.com/SaadIT23/Todo-App.git",
+    },
+    {
+        id: "tourist-app",
+        num: "05",
+        category: "Full Stack Project",
+        title: "Tourist App",
+        des: "A user-friendly platform for travelers to explore destinations, view locations on Google Maps, check ratings, filter by price or rating, save favorites, and share feedback for an enhanced travel experience.",
+        stack: [{ name: "React" }, { name: "Tailwind" }, { name: "Node.js" }, { name: "MongoDB" }],
+        image: [{ src: "/to1.JPG" }, { src: "/to2.JPG" }, { src: "/to3.JPG" }, { src: "/to4.JPG" }],
+        github: "",
+    },
+    {
+        id: "it-agency-admin",
+        num: "06",
+        category: "Full Stack Project",
+        title: "IT Agency Website with Admin Panel",
+        des: "A dynamic and responsive web application for an IT agency featuring a public-facing site for showcasing services and an admin panel for content management, client handling, and service analytics. Includes secure authentication for both admin and users, service request forms, project listings, and real-time updates.",
+        stack: [
+            { name: "MongoDB" },
+            { name: "Express.js" },
+            { name: "React" },
+            { name: "Node.js" },
+            { name: "JWT Auth" },
+            { name: "Tailwind" },
+        ],
+        image: [{ src: "/it1.JPG" }, { src: "/it5.JPG" }, { src: "/it3.JPG" }, { src: "/it4.JPG" }],
+        github: "",
+        live: "https://logi-xolve.vercel.app/",
+    },
+    {
+        id: "job-portal-app",
+        num: "07",
+        category: "Full Stack Project",
+        title: "Job Portal Web Application",
+        des: "A job portal with separate modules for seekers and companies. Companies can post jobs, track applications, and schedule interviews. Seekers can search and filter jobs, apply, track status, and create/upload resumes (including video resumes). Includes a chatbot for assistance, profile management, and secure authentication.",
+        stack: [
+            { name: "ASP.NET" },
+            { name: "C#" },
+            { name: "MongoDB" },
+            { name: "HTML5" },
+            { name: "CSS3" },
+            { name: "JavaScript" },
+            { name: "AI Chatbot" },
+
+        ],
+        image: [{ src: "/job5.JPG" }, { src: "/job2.JPG" }, { src: "/job3.JPG" }, { src: "/job4.JPG" }],
+        github: "",
+        live: "",
+    },
+    {
+        id: "movies-music-app",
+        num: "08",
+        category: "Full Stack Project",
+        title: "Movies & Music Web Application",
+        des: "A MERN stack web app where users can explore trending movies and music, search by genre, and view detailed content pages. Includes personalized playlists, watchlists, audio/video streaming, and secure authentication for user profiles. Admins can manage content, while users enjoy a smooth, responsive, and engaging multimedia experience.",
+        stack: [
+            { name: "MongoDB" },
+            { name: "Express.js" },
+            { name: "React.js" },
+            { name: "Node.js" },
+            { name: "HTML5" },
+            { name: "CSS3" },
+            { name: "JavaScript" },
+        ],
+        image: [{ src: "/mov1.JPG" }, { src: "/mov2.JPG" }, { src: "/mov3.JPG" }, { src: "/mov4.JPG" }],
+        github: "",
+        live: "",
+    },
+    {
+        id: "umt-virtual-tour",
+        num: "09",
+        category: "Full Stack Project",
+        title: "3D Virtual Tour Web",
+        des: "An immersive 3D virtual tour platform of the University of Management and Technology (UMT) featuring 360° views, interactive maps, and sections for academics and student life with a live chatbot for queries. Includes an admin panel for content management and smooth user navigation powered by Next.js and 360° integration.",
+        stack: [
+            { name: "Next.js" },
+            { name: "Tailwind CSS" },
+            { name: "Node.js" },
+            { name: "MongoDB" },
+            { name: "AI Chatbot" },
+
+        ],
+        image: [{ src: "/umt1.JPG" }, { src: "/umt2.JPG" }, { src: "/umt3.JPG" }, { src: "/umt4.JPG" }],
+        github: "",
+        live: "",
+    },
+
+
+
+]
+
+const Work = () => {
+    const searchparams = useSearchParams({ forceDynamic: true })
+    const [project, setProject] = useState(projects[0])
+    const [index, setIndex] = useState(0)
+    const [isLoading, setIsLoading] = useState(true)
+    const [loadedCount, setLoadedCount] = useState(0)
+    const [direction, setDirection] = useState("next") // For slide direction
+
+    // Function to handle image load events
+    const handleImageLoaded = () => {
+        setLoadedCount((prev) => {
+            const newCount = prev + 1
+            if (newCount >= project.image.length) {
+                // Small delay to ensure smooth transition
+                setTimeout(() => {
+                    setIsLoading(false)
+                }, 300)
+            }
+            return newCount
+        })
+    }
+
+    // Reset loading state when project changes
+    useEffect(() => {
+        setIsLoading(true)
+        setLoadedCount(0)
+
+        // Preload images for the current project
+        const imageElements = []
+
+        project.image.forEach((img) => {
+            const imgElement = new window.Image()
+            imgElement.src = img.src
+            imgElement.onload = handleImageLoaded
+            imgElement.onerror = handleImageLoaded // Count errors as loaded to prevent infinite loading
+            imageElements.push(imgElement)
+        })
+
+        // If there are no images, set as loaded
+        if (project.image.length === 0) {
+            setIsLoading(false)
+        }
+
+        // Cleanup function
+        return () => {
+            imageElements.forEach((img) => {
+                img.onload = null
+                img.onerror = null
+            })
+        }
+    }, [project])
+
+    const handleNext = () => {
+        setDirection("next")
+        setIsLoading(true) // Start loading
+
+        const nextIndex = (index + 1) % projects.length
+        setIndex(nextIndex)
+        setProject(projects[nextIndex])
+    }
+
+    const handlePrev = () => {
+        setDirection("prev")
+        setIsLoading(true) // Start loading
+
+        const prevIndex = (index - 1 + projects.length) % projects.length
+        setIndex(prevIndex)
+        setProject(projects[prevIndex])
+    }
+
+    // GSAP animations
+    useGSAP(() => {
+        // Only animate when content is loaded
+        if (!isLoading) {
+            const tl = gsap.timeline()
+
+            // Slide in animation based on direction
+            const xStart = direction === "next" ? 100 : -100
+
+            // Animate content
+            tl.fromTo(
+                ".project-content",
+                {
+                    opacity: 0,
+                    x: xStart,
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.5,
+                    ease: "power2.out",
+                },
+            )
+
+            // Animate images with stagger
+            tl.fromTo(
+                ".project-image",
+                {
+                    opacity: 0,
+                    y: 20,
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.3,
+                    stagger: 0.1,
+                    ease: "power2.out",
+                },
+                "-=0.3", // Start slightly before the previous animation finishes
+            )
+        }
+    }, [isLoading, direction])
+
+    useEffect(() => {
+        const slug = searchparams.get("slug")
+        const foundIndex = projects.findIndex((item) => item.id === slug)
+
+        // Ensure a valid project is always set
+        if (foundIndex !== -1) {
+            setProject(projects[foundIndex])
+            setIndex(foundIndex)
+        } else {
+            setProject(projects[0]) // Default project if no slug
+            setIndex(0)
+        }
+    }, [searchparams])
+
+    // Calculate loading percentage
+    const loadingPercentage = project.image.length > 0 ? Math.round((loadedCount / project.image.length) * 100) : 100
+
+    return (
+        <div className="min-h-[80vh] w-full relative">
+            {/* Custom Loader */}
+            <div
+                className={`absolute inset-0 z-10 bg-black/90 flex flex-col items-center justify-center transition-opacity duration-500 ${isLoading ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+            >
+                <div className="relative w-24 h-24">
+                    <div className="absolute inset-0 border-t-4 border-accent rounded-full animate-spin"></div>
+                    <div className="absolute inset-2 border-r-4 border-accent/70 rounded-full animate-spin animation-delay-150"></div>
+                    <div className="absolute inset-4 border-b-4 border-accent/50 rounded-full animate-spin animation-delay-300"></div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-accent font-bold">{loadingPercentage}%</span>
+                    </div>
+                </div>
+                <p className="text-lg font-medium text-white mt-4">Loading project...</p>
+            </div>
+
+            {/* Project Content */}
+            <div className="container mx-auto min-h-[80vh] my-3 flex gap-5 xl:w-[85vw] lg:w-[97vw] lg:flex-row sm:flex-col justify-center items-center">
+                {/* Project Info */}
+                <div className="project-content lg:w-[35%] sm:w-[95%] min-h-[100%] flex flex-col gap-[20px] justify-center">
+                    {/* Navigation Controls - Now part of the content section for better mobile positioning */}
+                    <div className="flex gap-3 mb-2">
+                        <button
+                            onClick={handlePrev}
+                            className="bg-accent hover:bg-accent-hover text-primary text-[22px] w-[44px] h-[44px] flex items-center justify-center"
+                            aria-label="Previous project"
+                        >
+                            <PiCaretLeftBold />
+                        </button>
+                        <button
+                            onClick={handleNext}
+                            className="bg-accent hover:bg-accent-hover text-primary text-[22px] w-[44px] h-[44px] flex items-center justify-center"
+                            aria-label="Next project"
+                        >
+                            <PiCaretRightBold />
+                        </button>
+                    </div>
+
+                    <div className="text-6xl md:text-8xl leading-none font-extrabold text-transparent text-outline">
+                        {project.num}
+                    </div>
+                    <h3 className="leading-none text-sm text-accent border-b border-accent w-fit">{project.title}</h3>
+                    <h2 className="text-[35px] md:text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize">
+                        {project.category}
+                    </h2>
+                    <p className="text-white/60 xl:text-[16px] md:text-[14px] text-[12px]">{project.des}</p>
+
+                    <ul className="flex gap-3 flex-wrap">
+                        {project.stack.map((item, idx) => (
+                            <li key={idx} className="xl:text-xl md:text-lg text-sm text-accent">
+                                {item.name}
+                                {idx !== project.stack.length - 1 && ","}
+                            </li>
+                        ))}
+                    </ul>
+                    <div className="border border-white/20"></div>
+
+                    <div className="flex gap-4">
+                        {project.github && (
+                            <Link
+                                className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group relative"
+                                href={project.github}
+                                target="_blank"
+                            >
+                                <BsGithub className="text-white text-3xl group-hover:text-accent" />
+                                <p className="absolute text-xs font-bold -bottom-3 text-gray-700 rounded-lg p-1 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    Github
+                                </p>
+                            </Link>
+                        )}
+
+                        {project.live && (
+                            <Link
+                                className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group relative"
+                                href={project.live}
+                                target="_blank"
+                            >
+                                <BsArrowUpRight className="text-white text-3xl group-hover:text-accent" />
+                                <p className="absolute text-xs font-bold -bottom-3 text-gray-700 rounded-lg p-1 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    Live
+                                </p>
+                            </Link>
+                        )}
+                    </div>
+                </div>
+
+                {/* Project Images */}
+                <div className="lg:w-[65%] sm:w-[80%] min-h-[100%] grid grid-cols-1 md:grid-cols-2 gap-8 m-3 justify-items-center items-center place-content-center">
+                    {project.image.map((img, idx) => (
+                        <div
+                            key={idx}
+                            className="project-image w-[100%] h-[100%] shadow-md shadow-accent hover:border-2 hover:border-accent"
+                        >
+                            <NextImage
+                                src={img.src || "/placeholder.svg"}
+                                width={400}
+                                height={280}
+                                quality={100}
+                                priority={true}
+                                className="object-contain w-full h-full"
+                                alt={`${project.title} image ${idx + 1}`}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Project Indicator */}
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+                {projects.map((_, idx) => (
+                    <div
+                        key={idx}
+                        className={`w-2 h-2 rounded-full ${idx === index ? "bg-accent w-6" : "bg-white/30"} transition-all duration-300`}
+                        onClick={() => {
+                            setDirection(idx > index ? "next" : "prev")
+                            setIsLoading(true)
+                            setIndex(idx)
+                            setProject(projects[idx])
+                        }}
+                    ></div>
+                ))}
+            </div>
+        </div>
+    )
+}
+
+export default Work
+
+
+global.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+@layer base {
+  body {
+    @apply bg-primary text-white
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 1px #ffffff;
+  }
+
+  .text-outline-hover {
+    -webkit-text-stroke: 1px #00ff99;
+  }
+
+
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "JetBrains Mono", monospace;
+}
+

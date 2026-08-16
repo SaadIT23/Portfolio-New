@@ -1,194 +1,126 @@
-"use client"
-import React from 'react'
-import { FaHtml5, FaCss3, FaJs, FaReact, FaFigma, FaNodeJs, FaJava, FaPython } from "react-icons/fa"
-import { SiTailwindcss, SiNextdotjs } from "react-icons/si"
-import { PiFileCpp } from "react-icons/pi";
-import { useState } from "react"
-import Details from '../components/Details';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
+"use client";
 
-// about data 
-const about = {
+import React, { useState } from "react";
+import Details from "../components/Details";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import portfolio from "@/data/portfolio.json";
+
+const buildResumeData = () => {
+  const about = {
     title: "About Me",
-    des: '"Sharing a glimpse into my personal background."',
-    info: [
-        {
-            fieldname: 'Name',
-            fieldvalue: 'Saad Imran',
-        },
-        {
-            fieldname: 'Phone',
-            fieldvalue: '+92 3354747057',
-        },
-        {
-            fieldname: 'Email',
-            fieldvalue: 'saadimran936@gmail.com',
-        },
-        {
-            fieldname: 'Nationality',
-            fieldvalue: 'Pakistan',
-        },
-        {
-            fieldname: 'Freelance',
-            fieldvalue: 'Available',
-        },
-        {
-            fieldname: 'Languages',
-            fieldvalue: 'English, Urdu',
-        },
-    ]
-}
-const experience = {
-    icon: '',
-    title: 'My Experience',
-    des: '"Showcasing my diverse experience from various industries."',
-    items: [
-        {
-            company: 'Freelance',
-            position: "Web Developer",
-            duration: "2023 - 2025",
-        },
-        {
-            company: 'HiSkyTech',
-            position: "Front-End Developer",
-            duration: "Jul 2024 - Aug 2024",
-        },
-    ]
-}
-const education = {
-    icon: '',
-    title: 'My Education',
-    des: '"Highlighting my academic background and relevant qualifications."',
-    items: [
-        {
-            institute: 'Coursera',
-            degree: "FullStack Web Development Course",
-            duration: "2023",
-        },
-        {
-            institute: 'University of Management and Technology, Lahore',
-            degree: "Bachelor in Information Technology (BS IT)",
-            duration: "2021 - 2025",
-        },
-        {
-            institute: 'Punjab Group of Colleges, Lahore',
-            degree: "Intermediate in Science (FSc Pre Engineering)",
-            duration: "2018 - 2020",
-        },
-        {
-            institute: 'M.N Education Campus, Lahore',
-            degree: "Matriculation in Science with Computer",
-            duration: "2016 - 2018",
-        },
+    des: portfolio.resume.aboutDescription,
+    info: portfolio.resume.aboutInfo,
+  };
 
-    ]
-}
+  const experience = {
+    title: "My Experience",
+    des: "Showcasing my professional journey and real-world development experience.",
+    items: portfolio.resume.experience,
+  };
 
-const skills = {
+  const education = {
+    title: "My Education",
+    des: "Highlighting my academic background and technical learning path.",
+    items: portfolio.resume.education,
+  };
+
+  const skills = {
     title: "My Skills",
-    des: '"Demonstrating my proficiency in key skills and technologies that drive my work and projects."',
-    skillset: [
-        {
-            icon: <FaHtml5 />,
-            name: "HTML 5",
-        },
-        {
-            icon: <FaCss3 />,
-            name: "CSS 3",
-        },
-        {
-            icon: <FaJs />,
-            name: "Javascript",
-        },
-        {
-            icon: <FaReact />,
-            name: "React.js",
-        },
-        {
-            icon: <SiNextdotjs />,
-            name: "next.js",
-        },
-        {
-            icon: <SiTailwindcss />,
-            name: "Tailwind CSS",
-        },
-        {
-            icon: <FaNodeJs />,
-            name: "Node JS",
-        },
-        {
-            icon: <PiFileCpp />,
-            name: "C++",
-        },
-        {
-            icon: <FaJava />,
-            name: "Java",
-        },
-        {
-            icon: <FaFigma />,
-            name: "Figma",
-        },
-        {
-            icon: <FaPython />,
-            name: "Python",
-        },
+    des: "Demonstrating the technologies and tools I use to build high-quality products.",
+    skillset: portfolio.skills.flatMap((group) => group.items),
+  };
 
-    ]
+  const achievements = {
+    title: "Achievements",
+    des: "Recognition and milestones highlighting consistency, technical growth, and impact.",
+    items: portfolio.resume.achievements || [],
+  };
 
-}
+  const certifications = {
+    title: "Certifications",
+    des: "Certifications and participation records that support continuous learning.",
+    items: portfolio.resume.certifications || [],
+  };
 
-
+  return { about, experience, education, skills, achievements, certifications };
+};
 
 const Resume = () => {
+  const { about, experience, education, skills, achievements, certifications } = buildResumeData();
 
-    const [details, setDetails] = useState(experience)
-    const [active, setActive] = useState("exp")
+  const [details, setDetails] = useState(experience);
+  const [active, setActive] = useState("exp");
 
-    const handleClick = (e) => {
+  const handleClick = (val, sec) => {
+    setDetails(val);
+    setActive(sec);
+  };
 
-        if (e.target.value === 'education') {
-            setDetails(education)
-            setActive('edu')
-        }
-        else if (e.target.value === 'experience') {
-            setDetails(experience)
-            setActive('exp')
-        }
-        else if (e.target.value === 'skills') {
-            setDetails(skills)
-            setActive('skill')
-        }
-        else if (e.target.value === 'about') {
-            setDetails(about)
-            setActive('about')
-        }
-    }
+  useGSAP(() => {
+    gsap.fromTo(
+      ".container .det",
+      { opacity: 0, scale: 0.98 },
+      {
+        delay: 0.1,
+        opacity: 1,
+        duration: 0.3,
+        scale: 1,
+      },
+    );
+  }, [details]);
 
-    useGSAP(() => {
-        gsap.fromTo(".container .det", { opacity: 0, x: 20 }, {
-            delay: 0.3,
-            opacity: 1,
-            duration: 0.5,
-            x: 0
-        })
-    }, [details])
+  return (
+    <div className="bg-gray-950 py-10 min-h-screen">
+      <div className="container flex min-h-[80vh] mx-auto min-w-[90%] lg:flex-row sm:flex-col lg:justify-center sm:justify-center lg:items-start sm:items-center gap-10">
 
-    return (
-        <div>
-            <div className="container flex  min-h-[80vh]  mx-auto my-5 min-w-[90%] lg:flex-row sm:flex-col lg:justify-start sm:justify-center lg:items-start sm:items-center">
-                <div className="2xl:w-[50%] lg:w-[30%] sm:w-[70%] min-h-full  flex flex-col items-center gap-8 pt-10 text-white font-medium">
-                    <button className={`2xl:w-[50%] lg:w-[80%] sm:w-[80%] bg-[#27272c] p-3 rounded-lg transition-all duration-300 hover:font-bold hover:bg-accent hover:text-primary ${(active === 'exp') ? 'bg-accent text-primary font-bold' : ''}`} value={'experience'} onClick={handleClick}>Experience</button>
-                    <button className={`2xl:w-[50%] lg:w-[80%] sm:w-[80%] bg-[#27272c] p-3 rounded-lg transition-all duration-300 hover:font-bold hover:bg-accent hover:text-primary ${(active === 'edu') ? 'bg-accent text-primary font-bold' : ''}`} value={'education'} onClick={handleClick}>Education</button>
-                    <button className={`2xl:w-[50%] lg:w-[80%] sm:w-[80%] bg-[#27272c] p-3 rounded-lg transition-all duration-300 hover:font-bold hover:bg-accent hover:text-primary ${(active === 'skill') ? 'bg-accent text-primary font-bold' : ''}`} value={'skills'} onClick={handleClick}>Skills</button>
-                    <button className={`2xl:w-[50%] lg:w-[80%] sm:w-[80%] bg-[#27272c] p-3 rounded-lg transition-all duration-300 hover:font-bold hover:bg-accent hover:text-primary ${(active === 'about') ? 'bg-accent text-primary font-bold' : ''}`} value={'about'} onClick={handleClick}>About me</button>
-                </div>
-                <div className="det 2xl:w-[50%] lg:w-[70%] min-h-full flex flex-col pt-10 items-center">
-                    <Details details={details} />
-                </div>
+        {/* Sidebar Nav */}
+        <div className="2xl:w-[30%] lg:w-[35%] sm:w-[95%] min-h-full flex flex-col items-center gap-4 text-white font-medium sticky top-[100px]">
+
+          <div className="w-full rounded-2xl bg-gray-900 border border-gray-800 shadow-xl shadow-black p-6 hover:border-accent/30 transition-all">
+            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400 mb-3 tracking-tight">Biography</h2>
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">{portfolio.resume.aboutDescription}</p>
+            <div className="grid grid-cols-1 gap-3 text-sm">
+              <div className="bg-gray-800/80 px-4 py-3 rounded-lg border-l-4 border-accent shadow-sm flex items-center gap-3">
+                <span className="font-semibold text-white">BS IT (2025)</span> <span className="text-gray-400">- CGPA 3.82</span>
+              </div>
+              <div className="bg-gray-800/80 px-4 py-3 rounded-lg border-l-4 border-red-500 shadow-sm flex items-center gap-3">
+                <span className="font-semibold text-white">2nd Position</span> <span className="text-gray-400">- BOP Tech Batch</span>
+              </div>
+              <div className="bg-gray-800/80 px-4 py-3 rounded-lg border-l-4 border-green-500 shadow-sm flex items-center gap-3">
+                <span className="font-semibold text-white">Focus:</span> <span className="text-gray-400">Full-Stack & Analytics</span>
+              </div>
             </div>
-        </div>
-    )
-}
+          </div>
 
-export default Resume
+          <div className="w-full flex flex-col gap-3 mt-4">
+            {[
+              { val: experience, sec: "exp", label: "Experience" },
+              { val: education, sec: "edu", label: "Education" },
+              { val: skills, sec: "skill", label: "Skills" },
+              { val: about, sec: "about", label: "About me" },
+              { val: achievements, sec: "ach", label: "Achievements" },
+              { val: certifications, sec: "cert", label: "Certifications" },
+            ].map((btn) => (
+              <button
+                key={btn.sec}
+                className={`w-full text-left font-medium px-6 py-4 rounded-xl transition-all duration-300 shadow-md ${active === btn.sec ? "bg-accent text-primary scale-[1.02]" : "bg-gray-900 border border-gray-800 text-gray-300 hover:border-accent/40 hover:bg-gray-900/80 hover:text-white"}`}
+                onClick={() => handleClick(btn.val, btn.sec)}
+              >
+                {btn.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Content Render Pane */}
+        <div className="det 2xl:w-[65%] lg:w-[65%] sm:w-[95%] min-h-[70vh] flex flex-col items-start rounded-3xl border border-gray-800 bg-gray-900/60 p-8 shadow-2xl backdrop-blur-xl">
+          <Details details={details} />
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default Resume;

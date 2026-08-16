@@ -1,19 +1,21 @@
-import Link from 'next/link';
 import React from 'react'
-import { FaLinkedinIn } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
+import portfolio from "@/data/portfolio.json";
+import { socialIconMap } from "./iconMaps";
 
 const Social = ({ ConStyle, iconStyle }) => {
-    // <FaLinkedinIn /> 
-    // <FaGithub /> 
-    const socials = [
-        { icon: <FaLinkedinIn />, path: "https://www.linkedin.com/in/saad-imran-it-" },
-        { icon: <FaGithub />, path: "https://github.com/SaadIT23" },
-    ]
+    const socials = portfolio.socials || [];
+
     return (
         <div className={ConStyle}>
             {socials.map((item, index) => {
-                return <Link key={index} target='_blank' href={item.path} className={iconStyle}>{item.icon} </Link>
+                const Icon = socialIconMap[item.icon];
+                if (!Icon) return null;
+
+                return (
+                    <a key={index} target='_blank' href={item.url} className={iconStyle} aria-label={item.platform}>
+                        <Icon />
+                    </a>
+                )
             })}
         </div>
     )

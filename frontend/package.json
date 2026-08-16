@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "dotenv": "^17.4.2",
     "framer-motion": "^12.23.12",
     "gsap": "^3.12.7",
     "lucide-react": "^0.510.0",

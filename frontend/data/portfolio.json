@@ -1,0 +1,628 @@
+{
+  "site": {
+    "ownerName": "Saad Imran",
+    "logoText": "Saad",
+    "role": "Software Engineer",
+    "headline": "Software Engineer focused on full-stack systems with practical data analytics impact",
+    "heroIntro": "Hello I'm",
+    "heroDescription": "Software engineer focused on scalable full-stack applications, secure APIs, and automation. I also work with data extraction, dashboards, and ETL workflows where analytics supports product and business decisions.",
+    "cvFile": "Saad Imran CV Updated.pdf",
+    "heroImage": "/saad7.png",
+    "location": "Lahore, Pakistan",
+    "email": "saadimran936@gmail.com",
+    "phone": "+92 3354747057",
+    "availability": "Open to Work",
+    "nationality": "Pakistan",
+    "languages": "English, Urdu"
+  },
+  "socials": [
+    {
+      "platform": "LinkedIn",
+      "icon": "linkedin",
+      "url": "https://www.linkedin.com/in/saad-imran-it-"
+    },
+    {
+      "platform": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/SaadIT23"
+    }
+  ],
+  "stats": [
+    {
+      "num": 1,
+      "text": "Years of Experience"
+    },
+    {
+      "num": 11,
+      "text": "Projects Completed"
+    },
+    {
+      "num": 12,
+      "text": "Technologies Used"
+    }
+  ],
+  "about": {
+    "image": "/saadbg.png",
+    "paragraphs": [
+      "I am a software engineer with a strong full-stack foundation in modern web development, system design, and secure application architecture.",
+      "Alongside product engineering, I apply data analytics workflows using Python, ETL concepts, and dashboards to improve decision-making and operational efficiency."
+    ],
+    "quickInfo": [
+      {
+        "title": "Experience",
+        "value": "1+ Year (Industry)"
+      },
+      {
+        "title": "Projects",
+        "value": "10+ Delivered"
+      },
+      {
+        "title": "Education",
+        "value": "BS IT (2025), CGPA 3.82"
+      },
+      {
+        "title": "Focus",
+        "value": "Software Engineering + Analytics"
+      }
+    ]
+  },
+  "services": [
+    {
+      "id": "frontend",
+      "icon": "code",
+      "title": "Frontend Development",
+      "desc": "Building responsive and user-friendly interfaces using React, Next.js, and Tailwind CSS."
+    },
+    {
+      "id": "backend",
+      "icon": "server",
+      "title": "Backend Development",
+      "desc": "Creating secure APIs and robust server-side architecture with Node.js, Express, and database integrations."
+    },
+    {
+      "id": "ai",
+      "icon": "sparkles",
+      "title": "AI Product Integration",
+      "desc": "Integrating AI features like interview simulation, chatbots, and smart workflows into web platforms."
+    },
+    {
+      "id": "fullstack",
+      "icon": "globe",
+      "title": "Full Stack Solutions",
+      "desc": "Delivering complete end-to-end products from idea and UI to deployment and maintenance."
+    }
+  ],
+  "skills": [
+    {
+      "category": "Frontend",
+      "items": [
+        {
+          "name": "HTML 5",
+          "icon": "html",
+          "color": "text-orange-500"
+        },
+        {
+          "name": "CSS 3",
+          "icon": "css",
+          "color": "text-blue-500"
+        },
+        {
+          "name": "JavaScript",
+          "icon": "js",
+          "color": "text-yellow-400"
+        },
+        {
+          "name": "React.js",
+          "icon": "react",
+          "color": "text-sky-400"
+        },
+        {
+          "name": "Next.js",
+          "icon": "nextjs",
+          "color": "text-white"
+        },
+        {
+          "name": "Tailwind CSS",
+          "icon": "tailwind",
+          "color": "text-sky-300"
+        }
+      ]
+    },
+    {
+      "category": "Backend",
+      "items": [
+        {
+          "name": "Node.js",
+          "icon": "node",
+          "color": "text-green-500"
+        },
+        {
+          "name": "Express.js",
+          "icon": "server",
+          "color": "text-accent"
+        },
+        {
+          "name": "Django",
+          "icon": "django",
+          "color": "text-green-700"
+        }
+      ]
+    },
+    {
+      "category": "Databases",
+      "items": [
+        {
+          "name": "MongoDB",
+          "icon": "mongodb",
+          "color": "text-green-400"
+        },
+        {
+          "name": "MySQL",
+          "icon": "mysql",
+          "color": "text-blue-600"
+        },
+        {
+          "name": "PostgreSQL",
+          "icon": "postgres",
+          "color": "text-sky-700"
+        }
+      ]
+    },
+    {
+      "category": "Programming Languages",
+      "items": [
+        {
+          "name": "C++",
+          "icon": "cpp",
+          "color": "text-blue-400"
+        },
+        {
+          "name": "Java",
+          "icon": "java",
+          "color": "text-red-500"
+        },
+        {
+          "name": "Python",
+          "icon": "python",
+          "color": "text-yellow-300"
+        }
+      ]
+    },
+    {
+      "category": "Tools",
+      "items": [
+        {
+          "name": "Git",
+          "icon": "git",
+          "color": "text-orange-500"
+        },
+        {
+          "name": "Docker",
+          "icon": "docker",
+          "color": "text-blue-400"
+        },
+        {
+          "name": "Figma",
+          "icon": "figma",
+          "color": "text-pink-500"
+        }
+      ]
+    }
+  ],
+  "resume": {
+    "aboutDescription": "Software engineer with a strong full-stack base and complementary analytics experience. Focused on building secure, scalable applications while using data workflows and automation to improve outcomes.",
+    "aboutInfo": [
+      {
+        "fieldname": "Name",
+        "fieldvalue": "Saad Imran"
+      },
+      {
+        "fieldname": "Primary Role",
+        "fieldvalue": "Software Engineer"
+      },
+      {
+        "fieldname": "Secondary Focus",
+        "fieldvalue": "Data Analytics & Automation"
+      },
+      {
+        "fieldname": "Education",
+        "fieldvalue": "BS IT (2025), CGPA 3.82"
+      },
+      {
+        "fieldname": "Location",
+        "fieldvalue": "Lahore, Pakistan"
+      },
+      {
+        "fieldname": "Languages",
+        "fieldvalue": "English, Urdu"
+      }
+    ],
+    "experience": [
+      {
+        "company": "The Bank of Punjab, Head Office Lahore",
+        "position": "Data Science & Analytics Associate",
+        "duration": "Dec 2025 - Present",
+        "highlights": [
+          "Work with enterprise data extraction, transformation, and analysis",
+          "Build Power BI dashboards and automated reporting workflows",
+          "Create Python automation scripts for repetitive data tasks",
+          "Support ETL monitoring and data quality reliability"
+        ]
+      },
+      {
+        "company": "The Bank of Punjab, Lahore",
+        "position": "Management Trainee Officer - Technology",
+        "duration": "Nov 2025 - Dec 2025",
+        "highlights": [
+          "Secured 2nd position in the technology batch",
+          "Gained exposure to core banking systems and fintech operations",
+          "Worked across technology and operational units"
+        ]
+      },
+      {
+        "company": "Freelance & HiSkyTech",
+        "position": "MERN Stack Developer",
+        "duration": "Jan 2025 - Sep 2025",
+        "highlights": [
+          "Built full-stack applications with MongoDB, Express, React, and Node",
+          "Developed REST APIs, authentication flows, and responsive UI",
+          "Delivered secure and scalable client-focused solutions"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institute": "University of Management and Technology (UMT), Lahore",
+        "degree": "BS Information Technology",
+        "duration": "2021 - 2025",
+        "notes": "CGPA 3.82"
+      },
+      {
+        "institute": "Punjab Group of Colleges, Lahore",
+        "degree": "Intermediate in Science (FSc Pre-Engineering)",
+        "duration": "2018 - 2020",
+        "notes": ""
+      },
+      {
+        "institute": "M.N Education Campus, Lahore",
+        "degree": "Matriculation in Science",
+        "duration": "2016 - 2018",
+        "notes": ""
+      }
+    ],
+    "certifications": [
+      {
+        "title": "Advanced Python Programming",
+        "org": "Excellence Delivered Institute",
+        "duration": "Sep 2025 - April 2026"
+      },
+      {
+        "title": "Web Development",
+        "org": "DigiSkills",
+        "duration": "Jul 2023 - Oct 2023"
+      },
+      {
+        "title": "Freelancing",
+        "org": "DigiSkills",
+        "duration": "Jul 2023 - Oct 2023"
+      },
+      {
+        "title": "Cybersecurity Bootcamp",
+        "org": "Participation Certificate",
+        "duration": "2025"
+      }
+    ],
+    "achievements": [
+      {
+        "title": "2nd Position - MTO Technology Batch",
+        "org": "The Bank of Punjab",
+        "duration": "2025"
+      },
+      {
+        "title": "Rector Merit Award",
+        "org": "UMT - Academic Excellence",
+        "duration": ""
+      },
+      {
+        "title": "Dean Merit Award",
+        "org": "UMT - Academic Excellence",
+        "duration": ""
+      },
+      {
+        "title": "Orientation Leader Appreciation",
+        "org": "UMT Orientation Fall 2025",
+        "duration": "2025"
+      },
+      {
+        "title": "Marketing Project Showcase Participation",
+        "org": "UMT with BrandXhibit & Alkhidmat",
+        "duration": ""
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "ai-interviewer",
+      "num": "01",
+      "featured": true,
+      "category": "AI + Full Stack Project",
+      "title": "Aurora AI Interviewer",
+      "des": "Aurora AI Interviewer is a full-stack platform for interview preparation and hiring workflows. It includes AI mock interviews, conversational voice interviews, instant feedback, interview scoring, resume builder, and job portal flows for seekers and companies.",
+      "stack": [
+        "React",
+        "FastAPI",
+        "Python",
+        "MongoDB",
+        "Groq LLM",
+        "faster-whisper",
+        "edge-tts",
+        "piper-tts",
+        "Tailwind CSS"
+      ],
+      "features": [
+        "Role-based authentication for seeker and company users",
+        "AI mock interviews with question generation and answer evaluation",
+        "Conversational voice interviews with STT, TTS, and live feedback",
+        "Interview summaries with performance scoring",
+        "Resume builder with PDF download and saved resume support",
+        "Internal and external job portal listings",
+        "Application flow with saved resume selection or resume upload",
+        "Company dashboard for profile, jobs, and applicant review"
+      ],
+      "backendPackages": [
+        "fastapi",
+        "uvicorn",
+        "groq",
+        "python-dotenv",
+        "PyPDF2",
+        "edge-tts",
+        "faster-whisper",
+        "piper-tts"
+      ],
+      "image": "/uploads/1772969257005-s1.JPG",
+      "images": [
+        "/uploads/1772969275588-s1.JPG",
+        "/uploads/1772969278796-s4.JPG",
+        "/uploads/1772969284881-s8.JPG",
+        "/uploads/1772969287073-s9.JPG"
+      ],
+      "github": "",
+      "live": ""
+    },
+    {
+      "id": "e-commerce-store",
+      "num": "02",
+      "featured": true,
+      "category": "Full Stack Project",
+      "title": "E Commerce Store",
+      "des": "A full-stack e-commerce project with product management, order flow, and secure backend integration.",
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "PHP",
+        "MySQL"
+      ],
+      "image": "/E1.JPG",
+      "images": [
+        "/E1.JPG",
+        "/E2.JPG",
+        "/E3.JPG",
+        "/E8.JPG"
+      ],
+      "github": "https://github.com/SaadIT23/E-commerce-Project",
+      "live": ""
+    },
+    {
+      "id": "iphone-16-landing-page",
+      "num": "03",
+      "featured": true,
+      "category": "Front End Landing Page",
+      "title": "iPhone 16 Landing Page",
+      "des": "A sleek and animated landing page built for immersive product storytelling.",
+      "stack": [
+        "HTML",
+        "CSS",
+        "React.js",
+        "Tailwind",
+        "GSAP"
+      ],
+      "image": "/ip1.JPG",
+      "images": [
+        "/ip1.JPG",
+        "/ip2.JPG",
+        "/ip3.JPG",
+        "/ip5.JPG"
+      ],
+      "github": "https://github.com/SaadIT23/iPhone-16-Pro-Landing-Page",
+      "live": "https://iphone-16-pro-landing-page.vercel.app/"
+    },
+    {
+      "id": "portfolio-website",
+      "num": "04",
+      "featured": false,
+      "category": "Frontend Project",
+      "title": "Portfolio Website",
+      "des": "A portfolio website that showcases skills, projects, and achievements in a clean and modern layout.",
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Bootstrap"
+      ],
+      "image": "/p1.JPG",
+      "images": [
+        "/p1.JPG",
+        "/p2.JPG",
+        "/p3.JPG",
+        "/p4.JPG"
+      ],
+      "github": "https://github.com/SaadIT23/Mahad-Portfolio",
+      "live": ""
+    },
+    {
+      "id": "todo-list-app",
+      "num": "05",
+      "featured": false,
+      "category": "Frontend + Backend",
+      "title": "Todo List App",
+      "des": "A task management app for organizing and tracking daily work efficiently.",
+      "stack": [
+        "React",
+        "CSS",
+        "Tailwind"
+      ],
+      "image": "/t1.JPG",
+      "images": [
+        "/t1.JPG",
+        "/t2.JPG"
+      ],
+      "github": "https://github.com/SaadIT23/Todo-App.git",
+      "live": ""
+    },
+    {
+      "id": "tourist-app",
+      "num": "06",
+      "featured": false,
+      "category": "Full Stack Project",
+      "title": "Tourist App",
+      "des": "A platform for travelers to explore destinations, maps, ratings, favorites, and feedback.",
+      "stack": [
+        "React",
+        "Tailwind",
+        "Node.js",
+        "MongoDB"
+      ],
+      "image": "/to1.JPG",
+      "images": [
+        "/to1.JPG",
+        "/to2.JPG",
+        "/to3.JPG",
+        "/to4.JPG"
+      ],
+      "github": "",
+      "live": ""
+    },
+    {
+      "id": "it-agency-admin",
+      "num": "07",
+      "featured": false,
+      "category": "Full Stack Project",
+      "title": "IT Agency Website with Admin Panel",
+      "des": "A responsive IT agency platform with admin panel, authentication, and service request handling.",
+      "stack": [
+        "MongoDB",
+        "Express.js",
+        "React",
+        "Node.js",
+        "JWT Auth",
+        "Tailwind"
+      ],
+      "image": "/it1.JPG",
+      "images": [
+        "/it1.JPG",
+        "/it5.JPG",
+        "/it3.JPG",
+        "/it4.JPG"
+      ],
+      "github": "",
+      "live": "https://logi-xolve.vercel.app/"
+    },
+    {
+      "id": "job-portal-app",
+      "num": "08",
+      "featured": true,
+      "category": "Full Stack Project",
+      "title": "Job Portal Web Application",
+      "des": "A portal with job seeker and company modules, application tracking, and interview workflows.",
+      "stack": [
+        "ASP.NET",
+        "C#",
+        "MongoDB",
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ],
+      "image": "/job2.JPG",
+      "images": [
+        "/job5.JPG",
+        "/job2.JPG",
+        "/job3.JPG",
+        "/job4.JPG"
+      ],
+      "github": "",
+      "live": ""
+    },
+    {
+      "id": "movies-music-app",
+      "num": "09",
+      "featured": false,
+      "category": "Full Stack Project",
+      "title": "Movies & Music Web Application",
+      "des": "A MERN app with content discovery, playlists, watchlists, and media-focused UX.",
+      "stack": [
+        "MongoDB",
+        "Express.js",
+        "React.js",
+        "Node.js"
+      ],
+      "image": "/mov1.JPG",
+      "images": [
+        "/mov1.JPG",
+        "/mov2.JPG",
+        "/mov3.JPG",
+        "/mov4.JPG"
+      ],
+      "github": "",
+      "live": ""
+    },
+    {
+      "id": "umt-virtual-tour",
+      "num": "10",
+      "featured": false,
+      "category": "Full Stack Project",
+      "title": "3D Virtual Tour Web",
+      "des": "An immersive virtual tour platform with interactive campus exploration and chatbot support.",
+      "stack": [
+        "Next.js",
+        "Node.js",
+        "MongoDB",
+        "Tailwind CSS"
+      ],
+      "image": "/umt1.JPG",
+      "images": [
+        "/umt1.JPG",
+        "/umt2.JPG",
+        "/umt3.JPG",
+        "/umt4.JPG"
+      ],
+      "github": "",
+      "live": ""
+    }
+  ],
+  "blogs": [
+    {
+      "id": "ai-interview-prep-2026",
+      "title": "How I Built an AI Interviewer",
+      "date": "2026-03-01",
+      "excerpt": "Architecture, prompts, and technical decisions behind my AI interviewer project.",
+      "tags": [
+        "AI",
+        "Next.js",
+        "Product"
+      ],
+      "url": "#"
+    },
+    {
+      "id": "vercel-deployment-notes",
+      "title": "My Vercel Deployment Workflow",
+      "date": "2026-02-10",
+      "excerpt": "How I manage frontend updates, environment variables, and safe deploys.",
+      "tags": [
+        "Vercel",
+        "DevOps"
+      ],
+      "url": "#"
+    }
+  ]
+}
